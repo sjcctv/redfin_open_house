@@ -1,11 +1,23 @@
-#!/usr/bin/env bash
-set -eux
+#!/bin/bash
+# -------------------------------
+# render-build.sh for Render
+# Compatible with Linux
+# -------------------------------
 
-# 删除 Render 的旧 Playwright 缓存
-rm -rf /opt/render/.cache/ms-playwright || true
+# 遇到错误就停止
+set -e
 
-# 安装 Python 依赖
+# 确保脚本是 LF 换行（如果在 Windows 上写过）
+# 如果还没转换，先在本地运行: dos2unix render-build.sh
+
+echo ">>> Upgrade pip"
+pip install --upgrade pip
+
+echo ">>> Install Python dependencies"
 pip install -r requirements.txt
 
-# 安装 Chromium 到虚拟环境
-playwright install --with-deps chromium
+echo ">>> Install Playwright browsers"
+# 如果你用 playwright 1.40+，这个命令安装 chromium
+playwright install chromium
+
+echo ">>> Build complete!"
