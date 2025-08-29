@@ -8,7 +8,7 @@ scrape_progress={"page":0}
 
 async def scrape_with_progress(target_address):
     results=[]
-    target_lat,target_lon=34.029,-118.422
+    target_lat,target_lon=34.0187882,-118.4141604
     match=re.search(r"\b\d{5}\b",target_address)
     zipcode=match.group(0) if match else "90034"
     from playwright.async_api import async_playwright
@@ -61,3 +61,4 @@ def progress():
 if __name__=="__main__":
     # 监听所有网卡，局域网可访问
     app.run(host="0.0.0.0", port=5000, debug=True)
+
