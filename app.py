@@ -17,7 +17,7 @@ async def scrape_with_progress(target_address):
         context=await browser.new_context(user_agent=f"Mozilla/5.0 AppleWebKit/537.36 Chrome/{random.randint(100,115)}")
         page=await context.new_page()
         url=f"https://www.redfin.com/zipcode/{zipcode}/filter/open-house=anytime,school-types=elementary+middle+high"
-        await page.goto(url,timeout=60000)
+        await page.goto(url,timeout=120000)
         page_number=0
         while True:
             page_number+=1
@@ -61,4 +61,5 @@ def progress():
 if __name__=="__main__":
     # 监听所有网卡，局域网可访问
     app.run(host="0.0.0.0", port=5000, debug=True)
+
 
